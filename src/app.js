@@ -3,18 +3,18 @@ import express from 'express';
 import bodyParser from 'body-parser';
 // import cookieParser from 'cookie-parser';
 import cors from 'cors';
-// import logger from 'morgan';
+import logger from 'morgan';
 import passport from 'passport';
 import path from 'path';
 
-// import authenticationMiddleware from './lib/auth/middleware';
-// import JwtPassportStrategy from './lib/auth/jwt-strategy';
+import authenticationMiddleware from './lib/auth/middleware';
+import JwtPassportStrategy from './lib/auth/jwt-strategy';
 import { initializeRoutes, initializeErrorHandlers } from './routes';
 
 // Setup express
 const app = express();
 
-// app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Setup passport
-// app.use(passport.initialize());
-// passport.use(JwtPassportStrategy);
-// app.use(authenticationMiddleware);
+app.use(passport.initialize());
+passport.use(JwtPassportStrategy);
+app.use(authenticationMiddleware);
 
 // Custom middlewares
 app.use((req, res, next) => {

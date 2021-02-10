@@ -3,6 +3,8 @@ import express from 'express';
 import config from '../config';
 import { db } from '../lib/clients';
 
+import authRouter from './auth';
+
 const router = express.Router();
 
 router.get('/', async (req, res /* next */) => {
@@ -24,6 +26,7 @@ router.get('/', async (req, res /* next */) => {
 
 export const initializeRoutes = (app) => {
   app.use('/', router);
+  app.use('/auth', authRouter);
 };
 
 export const initializeErrorHandlers = (app) => {
