@@ -1,0 +1,46 @@
+{
+  "name": "cs458_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "nodemon -L ./src/app.js --watch src --exec babel-node",
+    "build": "babel ./src -d dist/",
+    "clean": "rm -r node_modules/ && rm -r dist/",
+    "-- DATABASE_SCRIPTS --": "------------------------------------------------",
+    "db:mock-setup": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && echo DB SETUP COMPLETE!",
+    "-- CONTAINER_SCRIPTS --": "-----------------------------------------------",
+    "container:start": "npm run build && npm run start",
+    "container:setup": "npm run db:mock-setup",
+    "-- RULE_ENFORCING --": "--------------------------------------------------",
+    "test": "jest test/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "husky": "^5.0.9",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "sequelize": "^6.5.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.5.2"
+  }
+}
