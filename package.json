@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "npm run build && echo BUILD COMPLETE! && node dist/app.js",
+    "start": "node dist/app.js",
     "build": "babel ./src -d dist/",
     "clean": "rm -r node_modules/ && rm -r dist/",
     "-- DATABASE_SCRIPTS --": "------------------------------------------------",
