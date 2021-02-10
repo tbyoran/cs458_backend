@@ -33,7 +33,7 @@ For the rest of the environment variables, check [this file](CONFIG_VARS.md).
 
 ## 3. Start the container
 ```bash
-yarn container:start
+yarn start
 ```
 Now, you should see the server ready message:
 ```bash

@@ -10,7 +10,7 @@
     "-- DATABASE_SCRIPTS --": "------------------------------------------------",
     "db:mock-setup": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && echo DB SETUP COMPLETE!",
     "-- CONTAINER_SCRIPTS --": "-----------------------------------------------",
-    "container:start": "npm run build && npm run start",
+    "container:start": "npm run build && echo BUILD COMPLETE! && node dist/server.js",
     "container:setup": "npm run db:mock-setup",
     "-- RULE_ENFORCING --": "--------------------------------------------------",
     "test": "jest test/"
