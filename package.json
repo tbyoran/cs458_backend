@@ -2,6 +2,9 @@
   "name": "cs458_backend",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.18.4"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "build": "babel ./src -d dist/",
