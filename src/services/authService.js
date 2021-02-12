@@ -16,7 +16,7 @@ const Login = ({ email, phoneNumber, password }) => new Promise(async (resolve, 
     return reject(constants.ERRORS.INVALID_ARGS);
   }
 
-  phoneNumber = phoneNumber && phoneNumber.replaceAll(' ', '') || null;
+  phoneNumber = phoneNumber && phoneNumber.split(" ").join("") || null;
 
   if (phoneNumber && !validator.isMobilePhone(phoneNumber, "tr-TR")) {
     return reject(constants.ERRORS.INVALID_ARGS);
