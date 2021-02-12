@@ -4,7 +4,7 @@ import constants from '../constants';
 const UNPROTECTED_ROUTES = [
   '/',
   '/auth/login',
-  '/auth/register',
+  '/auth/signup',
 ];
 
 export default (req, res, next) => passport.authenticate('jwt', { session: false }, (err, payload /* info */) => {

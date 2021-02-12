@@ -7,20 +7,30 @@ import { db } from '../lib/clients';
 import constants from '../lib/constants';
 import { generateJwtToken } from '../lib/utils';
 
-const Login = ({ username, password }) => new Promise(async (resolve, reject) => {
-  if (!username || !password) {
+const Login = ({ email, phoneNumber, password }) => new Promise(async (resolve, reject) => {
+  if ((!email && !phoneNumber) || !password) {
     return reject(constants.ERRORS.MISSING_ARGS);
+  }
+
+  if (email && !validator.isEmail(email)) {
+    return reject(constants.ERRORS.INVALID_ARGS);
+  }
+
+  phoneNumber = phoneNumber && phoneNumber.replaceAll(' ', '') || null;
+
+  if (phoneNumber && !validator.isMobilePhone(phoneNumber, "tr-TR")) {
+    return reject(constants.ERRORS.INVALID_ARGS);
   }
 
   const user = await db.User.findOne({
     where: {
-      username,
+      [email ? 'email' : 'phoneNumber']: email || phoneNumber,
       password: md5(password),
     },
   });
 
   if (!user) {
-    return reject(constants.ERRORS.INVALID_ARGS);
+    return reject(constants.ERRORS.ENTITY_NOT_EXIST);
   }
 
   const token = generateJwtToken(user.uuid);
@@ -29,13 +39,10 @@ const Login = ({ username, password }) => new Promise(async (resolve, reject) =>
 });
 
 const Register = ({
-  name,
-  surname,
   email,
-  username,
   password,
 }) => new Promise(async (resolve, reject) => {
-  if (!name || !surname || !email || !username || !password) {
+  if (!email || !password) {
     return reject(constants.ERRORS.MISSING_ARGS);
   }
 
@@ -45,10 +52,7 @@ const Register = ({
 
   const isExist = await db.User.findOne({
     where: {
-      [Op.or]: [
-        { username },
-        { email },
-      ],
+      email
     },
   });
 
@@ -58,10 +62,7 @@ const Register = ({
 
   const user = await db.User.create({
     uuid: _uuid(),
-    name,
-    surname,
     email,
-    username,
     password: md5(password),
   });
 

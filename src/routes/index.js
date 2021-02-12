@@ -4,6 +4,7 @@ import config from '../config';
 import { db } from '../lib/clients';
 
 import authRouter from './auth';
+import userRouter from './user';
 
 const router = express.Router();
 
@@ -27,6 +28,7 @@ router.get('/', async (req, res /* next */) => {
 export const initializeRoutes = (app) => {
   app.use('/', router);
   app.use('/auth', authRouter);
+  app.use('/user', userRouter);
 };
 
 export const initializeErrorHandlers = (app) => {

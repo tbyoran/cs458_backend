@@ -4,6 +4,10 @@ export default {
       code: 400,
       msg: 'Duplicated arguments'
     },
+    ENTITY_NOT_EXIST: {
+      code: 400,
+      msg: 'Entity does not exist. (Check your arguments)',
+    },
     INVALID_ARGS: {
       code: 400,
       msg: 'Invalid arguments. (Arguments cannot pass the validator)'

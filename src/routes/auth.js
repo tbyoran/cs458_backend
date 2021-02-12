@@ -15,4 +15,15 @@ router.post('/login', async (req, res /* next */) => {
   }
 });
 
+router.post('/signup', async (req, res /* next */) => {
+  const payload = req.body;
+
+  try {
+    const result = await AuthService.Register(payload);
+    return res.send(result);
+  } catch (err) {
+    return res.status(err && err.code || 500).send(err);
+  }
+});
+
 export default router;
