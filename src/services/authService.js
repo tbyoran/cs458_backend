@@ -73,7 +73,32 @@ const Register = ({
   return resolve();
 });
 
+const ForgotPassword = ({
+  email
+}) => new Promise(async (resolve, reject) => {
+  if (!email) {
+    return reject(constants.ERRORS.MISSING_ARGS);
+  }
+
+  if (!validator.isEmail(email)) {
+    return reject(constants.ERRORS.INVALID_ARGS);
+  }
+
+  const isExist = await db.User.findOne({
+    where: {
+      email
+    },
+  });
+
+  if (!isExist) {
+    return reject(constants.ERRORS.ENTITY_NOT_EXIST);
+  }
+
+  return resolve();
+});
+
 export default {
   Login,
   Register,
+  ForgotPassword,
 };

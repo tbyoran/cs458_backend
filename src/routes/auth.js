@@ -4,7 +4,7 @@ import { AuthService } from '../services';
 
 const router = express.Router();
 
-router.post('/login', async (req, res /* next */) => {
+router.post('/signin', async (req, res /* next */) => {
   const payload = req.body;
 
   try {
@@ -20,6 +20,17 @@ router.post('/signup', async (req, res /* next */) => {
 
   try {
     const result = await AuthService.Register(payload);
+    return res.send(result);
+  } catch (err) {
+    return res.status(err && err.code || 500).send(err);
+  }
+});
+
+router.post('/forgot', async (req, res /* next */) => {
+  const payload = req.body;
+
+  try {
+    const result = await AuthService.ForgotPassword(payload);
     return res.send(result);
   } catch (err) {
     return res.status(err && err.code || 500).send(err);

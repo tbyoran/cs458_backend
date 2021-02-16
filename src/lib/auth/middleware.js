@@ -3,7 +3,7 @@ import constants from '../constants';
 
 const UNPROTECTED_ROUTES = [
   '/',
-  '/auth/login',
+  '/auth/signin',
   '/auth/signup',
 ];
 
