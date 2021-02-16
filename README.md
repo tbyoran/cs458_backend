@@ -1,6 +1,6 @@
 # CS458 Backend Server
 
-Check product [documentation](ENDPOINTS.md) for more details.
+Check product [documentation](ENDPOINTS.md) for more details. [Server url](https://cs458-backend.herokuapp.com)
 
 ## Installation
 
