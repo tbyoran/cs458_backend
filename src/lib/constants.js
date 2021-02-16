@@ -2,15 +2,15 @@ export default {
   ERRORS: {
     DUPLICATED_ARGS: {
       code: 400,
-      msg: 'Duplicated arguments'
+      msg: 'User already exists'
     },
     ENTITY_NOT_EXIST: {
       code: 400,
-      msg: 'Entity does not exist. (Check your arguments)',
+      msg: 'User does not exist (Check your arguments)',
     },
     INVALID_ARGS: {
       code: 400,
-      msg: 'Invalid arguments. (Arguments cannot pass the validator)'
+      msg: 'Invalid arguments format (Arguments cannot pass the validator)'
     },
     INVALID_TOKEN: {
       code: 401,
