@@ -5,6 +5,7 @@ const UNPROTECTED_ROUTES = [
   '/',
   '/auth/signin',
   '/auth/signup',
+  '/auth/forgot',
 ];
 
 export default (req, res, next) => passport.authenticate('jwt', { session: false }, (err, payload /* info */) => {
